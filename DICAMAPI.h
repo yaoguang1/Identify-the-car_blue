@@ -1,23 +1,15 @@
-// --------------------------------------------------------------------------
-// All or portions of this software are copyrighted by D-IMAGE.
-// Copyright 2010-2011 D-IMAGE Corporation.  
-// Company proprietary.
-// --------------------------------------------------------------------------
 //******************************************************************************
 /**
  *  \file           DICAMAPI.h
- *  \brief          Defines the API for the D-IMAGE USB2.0 CAMERA DLL application
- *  \author         Jiafu 
- *  \version        \$ Revision: 0.1 \$         
- *  \arg            first implemetation    
- *  \date           2010/07/26 10:52:00  
+ *  \brief          Defines the API for the CAMERA DLL application
+ *  \author         ***  
  Revision | Submission Date | Description of Change
- 0x20         2011/5/20       add CameraGetSDKRevision()£»debug CameraSetMessage, CameraInit º¯Êı²ÎÊıÎ»ÖÃ£¬Ê¹Ö®¸üºÏÀí¡£
- 0x21         2011/6/30       add CameraContinuousCaptureFile()¡£
- 0x22         2011/9/05       ADD SetBMPPelsPerMeter();  
- 0x23         2012/01/10      add CameraGrabFrame(),CameraImageProcess(),CameraDisplayRGB24()...
- 0X24         2012/02/13      ADD CameraGetMTF();
- 0x25         2012/07/23      ADD AWB_ALWAYS_ON MODE
+ 0x20         *********       add CameraGetSDKRevision()ï¼›debug CameraSetMessage, CameraInit å‡½æ•°å‚æ•°ä½ç½®ï¼Œä½¿ä¹‹æ›´åˆç†ã€‚
+ 0x21         *********       add CameraContinuousCaptureFile()ã€‚
+ 0x22         *********       ADD SetBMPPelsPerMeter();  
+ 0x23         *********       add CameraGrabFrame(),CameraImageProcess(),CameraDisplayRGB24()...
+ 0X24         *********       ADD CameraGetMTF();
+ 0x25         *********       ADD AWB_ALWAYS_ON MODE
  */
 #ifndef _DICAMAPI_H_
 #define _DICAMAPI_H_
@@ -128,8 +120,8 @@ Name:	CameraCaptureFile
 Desc:	Capture an image to a file, the file format will change according to FileType
 Param:   strFileName  file name(include directory path)
         FileType     File type,specific definition refer FILE_TYPE
-		Quality      JEPG compression parameters£¬range£º1 - 100£¬value larger£¬image quality better£¬file memory bigger.
-		uiCapResolution resolution£¬ refer DI_RESOLUTION definition
+		Quality      JEPG compression parametersï¼Œrangeï¼š1 - 100ï¼Œvalue largerï¼Œimage quality betterï¼Œfile memory bigger.
+		uiCapResolution resolutionï¼Œ refer DI_RESOLUTION definition
 Return: Call returns a STATUS_OK on success,otherwise returns an error code  
 Note:  
   --------------------------------------------------------------*/
@@ -262,7 +254,7 @@ Note: Default regional is center,a quarter of full-screen
 	m_WBWVOff = m_height>>2;
 	m_WBWWidth = m_width>>1;
 	m_WBWHeight = m_height>>1;
-Notice£º
+Noticeï¼š
 --------------------------------------------------------------*/
 DI_API DI_CAMERA_STATUS _stdcall CameraSetWBWindow(USHORT HOff, USHORT VOff, USHORT Width, USHORT Height);
 /*==============================================================
@@ -391,20 +383,20 @@ DI_API DI_CAMERA_STATUS _stdcall CameraGetCurrentParameterTeam(IN BYTE *pTeam);
 /*==============================================================
 Name:	CameraSetGpio
 Desc:   Configure the input and output of GPIO
-Param:   bValue £­£­bit0 to IO3
-               £­£­bit1 to IO2
+Param:   bValue ï¼ï¼bit0 to IO3
+               ï¼ï¼bit1 to IO2
 		
 Return: Call returns a STATUS_OK on success,otherwise returns an error code
-Note:   input is 0£¬output is 1£»
-        such as£ºCameraSetGpio(0x01)--configure IO3 as output£¬IO2 as input.
+Note:   input is 0ï¼Œoutput is 1ï¼›
+        such asï¼šCameraSetGpio(0x01)--configure IO3 as outputï¼ŒIO2 as input.
         
 --------------------------------------------------------------*/
 DI_API DI_CAMERA_STATUS _stdcall CameraSetGpio(IN BYTE Value);
 /*==============================================================
 Name:	CameraSetGpio
 Desc:   Read GPIO
-Param:   bValue £­£­bit0 to IO3
-               £­£­bit1 to IO2
+Param:   bValue ï¼ï¼bit0 to IO3
+               ï¼ï¼bit1 to IO2
 		
 Return: Call returns a STATUS_OK on success,otherwise returns an error code
 Note:   Configure the appropriate IO port as output before read.
@@ -414,8 +406,8 @@ DI_API DI_CAMERA_STATUS _stdcall CameraReadGpio(IN BYTE *pbValue);
 /*==============================================================
 Name:	CameraSetGpio
 Desc:   Write GPIO
-Param:   bValue £­£­bit0 to IO3
-               £­£­bit1 to IO2
+Param:   bValue ï¼ï¼bit0 to IO3
+               ï¼ï¼bit1 to IO2
 		
 Return: Call returns a STATUS_OK on success,otherwise returns an error code
 Note:   Configure the appropriate IO port as output before read.
@@ -445,8 +437,8 @@ Param:   HOff Line offset
 		Height area height
 		
 Return: Call returns a STATUS_OK on success,otherwise returns an error code
-Note: full resolution£»
-Notice£ºThe function is effective when call CameraInit£¨£©.
+Note: full resolutionï¼›
+Noticeï¼šThe function is effective when call CameraInitï¼ˆï¼‰.
 --------------------------------------------------------------*/
 DI_API DI_CAMERA_STATUS _stdcall CameraSetDisplayWindow(USHORT HOff, USHORT VOff, USHORT Width, USHORT Height);
 
@@ -504,10 +496,10 @@ DI_API DI_CAMERA_STATUS _stdcall CameraGetFPS(float* fps);
 Name: Save***File
 Desc: save image data to file  
 Param: sfilename -- file name exp: d://test//test.jpg  
-       pBuffer -- Êı¾İÖ¸Õë
-       width -- ¿í¶È
-	   height -- ¸ß¶È
-       qualty -- JPGÍ¼ÏñÖÊÁ¿ ·¶Î§£º0-100 ÖµÔ½´ó£¬Ñ¹Ëõ±ÈÔ½Ğ¡£¬ÎÄ¼şÔ½´ó£¬Í¼ÏñÖÊÁ¿Ô½¸ß¡£ 
+       pBuffer -- æ•°æ®æŒ‡é’ˆ
+       width -- å®½åº¦
+	   height -- é«˜åº¦
+       qualty -- JPGå›¾åƒè´¨é‡ èŒƒå›´ï¼š0-100 å€¼è¶Šå¤§ï¼Œå‹ç¼©æ¯”è¶Šå°ï¼Œæ–‡ä»¶è¶Šå¤§ï¼Œå›¾åƒè´¨é‡è¶Šé«˜ã€‚ 
 Return: Call returns a STATUS_OK on success,otherwise returns an error code
   Note:   
 --------------------------------------------------------------*/
@@ -538,43 +530,43 @@ Return: Call returns a STATUS_OK on success,otherwise returns an error code
 DI_API DI_CAMERA_STATUS _stdcall SetBMPPelsPerMeter(LONG iXPelsPerMeter, LONG iYPelsPerMeter);
 
 /*==============================================================
-º¯Êı:	CameraGrabFrame
-¹¦ÄÜ:  ×¥È¡Í¼ÏñÊı¾İ
-²ÎÊı:  pImageBuffer ÓÃ»§·ÖÅäÊı¾İ¿Õ¼äÖ¸Õë 
+å‡½æ•°:	CameraGrabFrame
+åŠŸèƒ½:  æŠ“å–å›¾åƒæ•°æ®
+å‚æ•°:  pImageBuffer ç”¨æˆ·åˆ†é…æ•°æ®ç©ºé—´æŒ‡é’ˆ 
 
-  ·µ»ØÖµ: µ÷ÓÃ³É¹¦·µ»ØSTATUS_OK ·ñÔò·µ»Ø´íÎó´úÂë
-  ËµÃ÷:
+  è¿”å›å€¼: è°ƒç”¨æˆåŠŸè¿”å›STATUS_OK å¦åˆ™è¿”å›é”™è¯¯ä»£ç 
+  è¯´æ˜:
  
 --------------------------------------------------------------*/
 DI_API DI_CAMERA_STATUS _stdcall CameraGrabFrame(BYTE *pImageBuffer);
 /*==============================================================
-º¯Êı:	CameraImageProcess
-¹¦ÄÜ:  Í¼ÏñÊı¾İ´¦Àí
-²ÎÊı: pRawBuffer Ô­Ê¼Í¼ÏñÊı¾İ
-      pImageRGB24 ´¦ÀíºóÍ¼ÏñÊı¾İ¿Õ¼äÖ¸Õë  
+å‡½æ•°:	CameraImageProcess
+åŠŸèƒ½:  å›¾åƒæ•°æ®å¤„ç†
+å‚æ•°: pRawBuffer åŸå§‹å›¾åƒæ•°æ®
+      pImageRGB24 å¤„ç†åå›¾åƒæ•°æ®ç©ºé—´æŒ‡é’ˆ  
 
-  ·µ»ØÖµ: µ÷ÓÃ³É¹¦·µ»ØSTATUS_OK ·ñÔò·µ»Ø´íÎó´úÂë
-  ËµÃ÷:
+  è¿”å›å€¼: è°ƒç”¨æˆåŠŸè¿”å›STATUS_OK å¦åˆ™è¿”å›é”™è¯¯ä»£ç 
+  è¯´æ˜:
  
 --------------------------------------------------------------*/
 DI_API DI_CAMERA_STATUS _stdcall CameraImageProcess(BYTE *pRawBuffer, BYTE *pImageRGB24);
 /*==============================================================
-º¯Êı:	CameraDisplayRGB24
-¹¦ÄÜ:  ÏÔÊ¾RGB24Êı¾İµ½ÏÔÊ¾´°¿Ú
-²ÎÊı:  pImageRGB24 Í¼ÏñÊı¾İÖ¸Õë 
+å‡½æ•°:	CameraDisplayRGB24
+åŠŸèƒ½:  æ˜¾ç¤ºRGB24æ•°æ®åˆ°æ˜¾ç¤ºçª—å£
+å‚æ•°:  pImageRGB24 å›¾åƒæ•°æ®æŒ‡é’ˆ 
 
-  ·µ»ØÖµ: µ÷ÓÃ³É¹¦·µ»ØSTATUS_OK ·ñÔò·µ»Ø´íÎó´úÂë
-  ËµÃ÷:
+  è¿”å›å€¼: è°ƒç”¨æˆåŠŸè¿”å›STATUS_OK å¦åˆ™è¿”å›é”™è¯¯ä»£ç 
+  è¯´æ˜:
  
 --------------------------------------------------------------*/
 DI_API DI_CAMERA_STATUS _stdcall CameraDisplayRGB24( BYTE *pImageRGB24 );
 /*==============================================================
-º¯Êı:	CameraGetMTF
-¹¦ÄÜ:  ¶ÁÈ¡Í¼ÏñÇåÎú¶ÈÆÀ¹À²ÎÊı
-²ÎÊı: pMTF Êı¾İÖ¸Õë 
+å‡½æ•°:	CameraGetMTF
+åŠŸèƒ½:  è¯»å–å›¾åƒæ¸…æ™°åº¦è¯„ä¼°å‚æ•°
+å‚æ•°: pMTF æ•°æ®æŒ‡é’ˆ 
 
-  ·µ»ØÖµ: µ÷ÓÃ³É¹¦·µ»ØSTATUS_OK ·ñÔò·µ»Ø´íÎó´úÂë
-  ËµÃ÷:
+  è¿”å›å€¼: è°ƒç”¨æˆåŠŸè¿”å›STATUS_OK å¦åˆ™è¿”å›é”™è¯¯ä»£ç 
+  è¯´æ˜:
  
 --------------------------------------------------------------*/
 DI_API DI_CAMERA_STATUS _stdcall CameraGetMTF(BYTE *pMTF);
