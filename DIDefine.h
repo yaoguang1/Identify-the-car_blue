@@ -1,16 +1,7 @@
-// --------------------------------------------------------------------------
-// All or portions of this software are copyrighted by D-IMAGE.
-// Copyright 1996-2008 D-IMAGE Corporation.  
-// Company proprietary.
-// --------------------------------------------------------------------------
-//******************************************************************************
 /**
 *  \file           DICAMAPI.h
-*  \brief          Defines for the D-IMAGE USB2.0 Camera application
-*  \author         Mike 
-*  \version        \$ Revision: 1.1 \$         
-*  \arg            first implemetation    
-*  \date           2011/2/08 10:52:00     
+*  \brief          Defines for the Camera application
+*  \author         YaoG     
 */
 #ifndef _DIDEFINE_H_
 #define _DIDEFINE_H_
@@ -170,15 +161,15 @@ typedef enum tagDI_RUNMODE
 
 typedef enum tagDI_CAMERA_STATUS
 {
-		STATUS_OK = 1,                         //动作成功
-		STATUS_INTERNAL_ERROR = 0,             //内部错误
-		STATUS_NO_DEVICE_FIND = -1,            //没有发现相机
-		STATUS_NOT_ENOUGH_SYSTEM_MEMORY = -2,  //没有足够系统内存  
-		STATUS_HW_IO_ERROR = -3,               //硬件IO错误
-		STATUS_PARAMETER_INVALID = -4,         //参数无效
-		STATUS_PARAMETER_OUT_OF_BOUND = -5,    //参数越界
-		STATUS_FILE_CREATE_ERROR = -6,         //创建文件失败
-		STATUS_FILE_INVALID = -7,              //文件格式无效
+		STATUS_OK = 1,                         //鍔ㄤ綔鎴愬姛
+		STATUS_INTERNAL_ERROR = 0,             //鍐呴儴閿欒
+		STATUS_NO_DEVICE_FIND = -1,            //娌℃湁鍙戠幇鐩告満
+		STATUS_NOT_ENOUGH_SYSTEM_MEMORY = -2,  //娌℃湁瓒冲绯荤粺鍐呭瓨  
+		STATUS_HW_IO_ERROR = -3,               //纭欢IO閿欒
+		STATUS_PARAMETER_INVALID = -4,         //鍙傛暟鏃犳晥
+		STATUS_PARAMETER_OUT_OF_BOUND = -5,    //鍙傛暟瓒婄晫
+		STATUS_FILE_CREATE_ERROR = -6,         //鍒涘缓鏂囦欢澶辫触
+		STATUS_FILE_INVALID = -7,              //鏂囦欢鏍煎紡鏃犳晥
 		
 }DI_CAMERA_STATUS;
 
