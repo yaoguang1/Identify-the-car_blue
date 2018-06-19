@@ -1,5 +1,3 @@
-
-
 #include "stdafx.h"
 #include "cv.h"
 #include "highgui.h"
@@ -13,19 +11,19 @@ using namespace std;
 #define T_SIZE_THRE 10
 
 
-void GetDiffImage(IplImage* src1, IplImage* src2, IplImage* dst, int nThre)
+void GetDiffImage(IplImage* src1, IplImage* src2, IplImage* dst, int nThre)   //得到不同的图像进行处理
 {
 	unsigned char* SrcData1 = (unsigned char*)src1->imageData;
 	unsigned char* SrcData2 = (unsigned char*)src2->imageData;
 	unsigned char* DstData = (unsigned char*)dst->imageData;
 	int step = src1->widthStep / sizeof(unsigned char);
 
-	omp_set_num_threads(8);
+	omp_set_num_threads(8);   //设置线程数
 #pragma omp parallel for
 
-	for (int nI = 0; nI<src1->height; nI++)
+	for (int nI = 0; nI<src1->height; nI++)    //height图像高像素数
 	{
-		for (int nJ = 0; nJ <src1->width; nJ++)
+		for (int nJ = 0; nJ <src1->width; nJ++)    //width图像宽像素数
 		{
 			if (SrcData1[nI*step + nJ] - SrcData2[nI*step + nJ]> nThre)
 			{
@@ -39,7 +37,7 @@ void GetDiffImage(IplImage* src1, IplImage* src2, IplImage* dst, int nThre)
 	}
 }
 
-vector<CvBox2D> ArmorDetect(vector<CvBox2D> vEllipse)
+vector<CvBox2D> ArmorDetect(vector<CvBox2D> vEllipse)    //装甲检测  //用opencv最小外接矩形去表示一个类椭圆形Ellipse的高度
 {
 	vector<CvBox2D> vRlt;
 	CvBox2D Armor;
@@ -51,7 +49,9 @@ vector<CvBox2D> ArmorDetect(vector<CvBox2D> vEllipse)
 	{
 		for (unsigned int nJ = nI + 1; nJ < vEllipse.size(); nJ++)
 		{
-			if (abs(vEllipse[nI].angle - vEllipse[nJ].angle) < T_ANGLE_THRE && abs(vEllipse[nI].size.height - vEllipse[nJ].size.height) < (vEllipse[nI].size.height + vEllipse[nJ].size.height) / 10 && abs(vEllipse[nI].size.width - vEllipse[nJ].size.width) < (vEllipse[nI].size.width + vEllipse[nJ].size.width)/10)
+			if (abs(vEllipse[nI].angle - vEllipse[nJ].angle) < T_ANGLE_THRE && 
+			    abs(vEllipse[nI].size.height - vEllipse[nJ].size.height) < (vEllipse[nI].size.height + vEllipse[nJ].size.height) / 10 && 
+			    abs(vEllipse[nI].size.width - vEllipse[nJ].size.width) < (vEllipse[nI].size.width + vEllipse[nJ].size.width)/10)
 			{
 				Armor.center.x = (vEllipse[nI].center.x + vEllipse[nJ].center.x) / 2;
 				Armor.center.y = (vEllipse[nI].center.y + vEllipse[nJ].center.y) / 2;
@@ -75,7 +75,9 @@ vector<CvBox2D> ArmorDetect(vector<CvBox2D> vEllipse)
 	return vRlt;
 }
 
-void DrawBox(CvBox2D box, IplImage* img)
+void DrawBox(CvBox2D box, IplImage* img)    //对给定的2D点集，寻找最小面积的包围矩形，
+				       	    //使用函数 
+					    //CvBox2D cvMinAreaRect2( const CvArr* points, CvMemStorage* storage=NULL ); 
 {
 	CvPoint2D32f point[4];
 	int i;
@@ -84,7 +86,7 @@ void DrawBox(CvBox2D box, IplImage* img)
 		point[i].x = 0;
 		point[i].y = 0;
 	}
-	cvBoxPoints(box, point); //�����ά���Ӷ��� 
+	cvBoxPoints(box, point); //¼ÆËã¶þÎ¬ºÐ×Ó¶¥µã 
 	CvPoint pt[4];
 	for (i = 0; i<4; i++)
 	{
